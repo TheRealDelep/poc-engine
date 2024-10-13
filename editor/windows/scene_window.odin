@@ -44,7 +44,7 @@ update_scene_window :: proc() {
         rl.ClearBackground(rl.BLACK)
 
         rl.BeginMode3D(ed_camera)
-        game.draw()
+        game.draw_world()
 
         rl.DrawGrid(10, 1)
 

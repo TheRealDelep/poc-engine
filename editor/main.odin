@@ -10,7 +10,6 @@ import im_rl "../../../repos/odin-imgui/imgui_impl_raylib"
 
 import "windows"
 import game "../game/lib"
-import data "../game/lib/data"
 
 window_size : [2]c.int = {800, 450}
 
@@ -29,6 +28,8 @@ main :: proc() {
     io := im.GetIO()
     io.ConfigFlags |= {.DockingEnable}
 
+    game.init()
+
     for !rl.WindowShouldClose() {
         im_rl.process_events()
         im_rl.new_frame()
@@ -39,9 +40,12 @@ main :: proc() {
             window_size.y = rl.GetScreenHeight()
         }
 
+        game.update()
 
         rl.BeginDrawing() 
         rl.ClearBackground(rl.WHITE)
+
+        game.draw_world()
 
         im.DockSpaceOverViewport(viewport = im.GetMainViewport())
         windows.update_scene_window()
